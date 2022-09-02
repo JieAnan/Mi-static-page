@@ -2,18 +2,18 @@
 
 
 
-![image-20220902153030343](https://github.com/JieAnan/Mi-static-page/blob/master/images/0191ae995e33faedb3362abaa7a486d1.jpg)
+![page1](https://github.com/JieAnan/Mi-static-page/blob/master/images/page1.png)
 
 
 
-![image-20220902153118832](C:\Users\xiaojie\AppData\Roaming\Typora\typora-user-images\image-20220902153118832.png)
+![page2](https://github.com/JieAnan/Mi-static-page/blob/master/images/page2.png)
 
 
 
-![image-20220902153149909](C:\Users\xiaojie\AppData\Roaming\Typora\typora-user-images\image-20220902153149909.png)
+![page3](https://github.com/JieAnan/Mi-static-page/blob/master/images/page3.png)
 
 
 
 
 
-![image-20220902153209675](C:\Users\xiaojie\AppData\Roaming\Typora\typora-user-images\image-20220902153209675.png)
+![page4](https://github.com/JieAnan/Mi-static-page/blob/master/images/page4.png)
