@@ -1,3 +1,7 @@
+## Vercel 在线部署体验
+[小米官网静态](https://mi-static-page-gold.vercel.app)
+
+
 ## 页面缩略图
 
 
