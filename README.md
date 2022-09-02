@@ -2,7 +2,7 @@
 
 
 
-![image-20220902153030343](C:\Users\xiaojie\AppData\Roaming\Typora\typora-user-images\image-20220902153030343.png)
+![image-20220902153030343](https://github.com/JieAnan/Mi-static-page/blob/master/images/0191ae995e33faedb3362abaa7a486d1.jpg)
 
 
 
