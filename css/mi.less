@@ -1,0 +1,1495 @@
+/* 
+PC布局：
+1.浮动
+2.从外到内 div嵌套。
+ */
+
+
+html {
+  font-family: Helvetica Neue, Helvetica, Arial, Microsoft Yahei, Hiragino Sans GB, Heiti SC, WenQuanYi Micro Hei, sans-serif;
+}
+
+//  1.头部样式开始
+.header {
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  background-color: #333;
+  font-size: 12px;
+
+  // header中的li设置为行内块显示，方便水平和设置宽高
+  li {
+    position: relative;
+    float: left;
+
+    a {
+      color: #b0b0b0;
+
+      &:hover {
+        color: #fff;
+      }
+    }
+
+    span {
+      color: #424242;
+      margin: 0 6.0px;
+    }
+  }
+
+  .header-left {
+    float: left;
+
+    #sanjiao {
+      position: absolute;
+      display: none;
+      top: 32px;
+      left: 50%;
+      margin-left: -10px;
+      width: 0px;
+      height: 0px;
+      border-bottom: 8px solid white;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+    }
+
+    .download {
+      z-index: 800;
+      position: absolute;
+      top: 40px;
+      // 水平居中
+      left: 50%;
+      margin-left: -62px;
+      width: 124px;
+      height: 0px;
+      overflow: hidden;
+      background-color: #fff;
+      box-shadow: 0 1px 5px #aaa;
+      transition: height .3s;
+
+      img {
+        width: 90px;
+        height: 90px;
+        margin: 18px 0px 12px;
+      }
+
+      p {
+        color: #333;
+        line-height: 14px;
+        font-size: 14px;
+      }
+    }
+
+    #down:hover {
+      .download {
+        height: 148px;
+      }
+
+      #sanjiao {
+        display: block;
+      }
+    }
+  }
+
+  .header-right {
+    float: right;
+
+    // 购物车
+    .cart {
+      z-index: 1050;
+      position: relative;
+      width: 120px;
+      height: 40px;
+      background-color: #424242;
+      margin-left: 25px;
+      cursor: pointer;
+
+      i {
+        margin-right: 4px;
+      }
+
+      // 购物车下拉框
+      .cart-list {
+        z-index: 1050;
+        position: absolute;
+        top: 40px;
+        right: 0px;
+        /*高度设置为0  文字溢出*/
+        height: 0px;
+        overflow: hidden;
+        width: 300px;
+        background-color: #fff;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, .15);
+        color: #424242;
+        transition: all .3s;
+        z-index: 100;
+      }
+    }
+
+    // 控制下拉框  鼠标悬停购物车，变颜色
+    .cart:hover {
+      background-color: #fff;
+
+      a {
+        color: #ff6700;
+      }
+
+      .cart-list {
+        height: 100px;
+        line-height: 100px;
+      }
+    }
+  }
+}
+
+// 2.导航样式开始
+.nav {
+  position: relative;
+  width: 100%;
+  height: 100px;
+
+  .nav-logo {
+    float: left;
+    width: 56px;
+    height: 56px;
+    margin-top: 22px;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .nav-bar {
+    position: relative;
+    float: left;
+    width: 874px;
+    height: 100px;
+    padding-left: 170px;
+    box-sizing: border-box;
+
+    &>ul {
+      width: 714px;
+      height: 100px;
+      overflow: hidden;
+
+
+      &>li {
+        float: left;
+        height: 100px;
+        line-height: 100px;
+        padding: 0px 10px 0px;
+
+        // 字体链接
+        a {
+          font-size: 16px;
+
+          &:hover {
+            color: #ff6700;
+          }
+        }
+
+        // 对应的下拉框显示
+        .nav-bar-list {
+          z-index: 750;
+          position: absolute;
+          left: -395px;
+          top: 100px;
+
+          display: none;
+          width: 1902px;
+          height: 229px;
+          background-color: #fff;
+          border-top: 1px sloid #e0e0e0;
+          box-shadow: 0 3px 4px rgba(0, 0, 0, .18);
+
+          // 注意此时的ul会继承上面部分的ul的属性，需要进行清除。
+          ul {
+            display: block;
+            width: 1226px;
+            height: 201px;
+            margin: 0px 0px;
+
+            // 书写下面的a
+            li {
+              float: left;
+              width: 204px;
+              height: 201px;
+              margin: 0 0;
+
+              // 书写里面边框div
+              .nav-img-box {
+                width: 100%;
+                height: 110px;
+                margin-bottom: 15px;
+                margin-top: 35px;
+                border-right: 1px solid #e0e0e0;
+              }
+
+              // 给两个p设置相关的字体、行高大小。
+              p {
+                font-size: 12px;
+                line-height: 20px;
+              }
+
+              .price {
+                color: #ff6700;
+              }
+            }
+          }
+
+          // 去除最后一个图片盒子部分的有边框
+          .li-last {
+            .nav-img-box {
+              border-right: 0px solid #e0e0e0;
+            }
+          }
+        }
+
+        // 为li添加悬停动画
+        &:hover {
+          .nav-bar-list {
+            display: block;
+          }
+        }
+      }
+    }
+
+
+
+
+  }
+
+  .nav-search {
+    z-index: 750;
+    position: relative;
+    float: right;
+    margin-top: 25px;
+    width: 296px;
+    height: 50px;
+
+
+    // 左侧的input输入框
+    input {
+      float: left;
+      width: 223px;
+      height: 48px;
+      padding: 0 10px;
+      border: 1px solid #e0e0e0;
+      border-right: none;
+      // 去掉点击时候黑色边框。
+      outline: none;
+      transition: all .2s;
+      font-size: 14px;
+    }
+
+    button {
+      float: left;
+      width: 52px;
+      height: 50px;
+      background-color: #fff;
+      border: 1px solid #e0e0e0;
+      transition: all .2s;
+      font-size: 20px;
+
+      &:hover {
+        background-color: #ff6700;
+        border-color: #ff6700;
+        color: #fff,
+      }
+    }
+
+    .search-list {
+      z-index: 750;
+      display: none;
+      position: absolute;
+      top: 50px;
+      left: 0px;
+      width: 243px;
+      height: 240px;
+      border: 1px solid #ff6700;
+      background-color: #fff;
+      border-top: none;
+
+      // 搜索框默认搜索记录列表
+      a {
+        display: block;
+        height: 30px;
+        width: 100%;
+        padding: 6px 15px;
+        // 使得 padding 和 border的大小包括在总宽度总长度之内。
+        box-sizing: border-box;
+        text-align: left;
+        font-size: 14px;
+
+        &:hover {
+          background-color: #fafafa;
+        }
+      }
+
+    }
+  }
+
+  // 1.1鼠标悬停到input框：input外边框变颜色
+  .nav-search>input:hover {
+    border-color: #b0b0b0;
+  }
+
+  // 1.2鼠标悬停到input框：button外边框变颜色,使用兄弟选择器：+
+  .nav-search>input:hover+button {
+    border-color: #b0b0b0;
+  }
+
+  // 2.鼠标聚焦到输入框上进行边框颜色变化。连写
+  .nav-search>input:focus,
+  .nav-search>input:focus+button {
+    border-color: #ff6700;
+  }
+
+  // 3.鼠标聚焦到输入框中，显示搜索框,使用~选择后面的兄弟。
+  .nav-search>input:focus~.search-list {
+    display: block;
+  }
+
+}
+
+
+// 3.banner开始
+.banner {
+  // 默认宽度100%，使用版心 wrap 进一步控制宽度。
+  width: 100%;
+
+  .banner-box {
+    position: relative;
+    // 宽度继承wrap的宽度大小。
+    width: 100%;
+    height: 460px;
+    background-image: url("../images/banner.png");
+
+    // 滑动门
+    .slide {
+      // 绝对定位不占有初始位置
+      position: absolute;
+      left: 0px;
+      right: 0px;
+      width: 234px;
+      height: 460px;
+      background-color: rgba(105, 101, 101, .6);
+
+      // 设置三级盒子的padding
+      &>ul {
+        padding: 20px 0px;
+        box-sizing: border-box;
+
+        &>li {
+          padding-left: 30px;
+          height: 42px;
+          line-height: 42px;
+          text-align: left;
+          color: #e0e0e0;
+
+          &>a {
+            font-size: 14px;
+            color: #e0e0e0;
+          }
+
+          &>i {
+            float: right;
+            margin-right: 20px;
+            font-size: 25px;
+          }
+
+          // 设置右侧显示:不能相对于li定位，相对于slide定位
+          .slide-list {
+            z-index: 600;
+            display: none;
+            // 控制定位：相对于slide
+            position: absolute;
+            left: 234px;
+            top: 0px;
+            // 设置大小：高度为460减去边框
+            width: 992px;
+            height: 456px;
+            padding-top: 2px;
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            border-left: none;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, .18);
+
+            // 设置list下的ul布局，数值方向使用ul，多个ul进行浮动。
+            &>ul {
+              float: left;
+              width: 248px;
+              height: 458px;
+
+              li {
+                width: 100%;
+                height: 76px;
+                padding: 20px 0 20px 18px;
+                box-sizing: border-box;
+                color: #333;
+
+                a {
+                  img {
+                    width: 40px;
+                    height: 40px;
+                    margin: 0px 12px 0px 0px;
+                  }
+
+                  span {
+                    width: 172px;
+                    height: 40px;
+                    line-height: 40px;
+                    font-size: 16px;
+
+                    &:hover {
+                      color: #ff6700;
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          // 对slide-list中只有ul为三个的部分设置额外样式
+          .slide-list3 {
+            width: 744px;
+          }
+
+          // 对slide-list中只有ul为两个的部分设置额外样式
+          .slide-list2 {
+            width: 496px;
+          }
+
+          // 设置li滑动
+          &:hover {
+            background-color: #ff6700;
+
+            .slide-list {
+              display: block;
+            }
+          }
+        }
+      }
+
+    }
+
+    // 右边导航栏
+
+
+  }
+}
+
+// 4.ad开始
+.ad {
+  width: 100%;
+
+  .ad-box {
+    width: 100%;
+    height: 170px;
+    margin: 14px 0 26px;
+    background-color: #fff;
+
+    // 左侧aside
+    .ad-aside {
+      float: left;
+      width: 228px;
+      height: 164px;
+      padding: 3px;
+      background-color: #5f5750;
+
+      // row 控制前三个的下横线
+      .row::after {
+        position: absolute;
+        bottom: 0;
+        left: 6px;
+        content: "";
+        width: 64px;
+        height: 1px;
+        background-color: #665e57;
+      }
+
+      // col 控制1245的右边竖线
+      .col::before {
+        position: absolute;
+        right: 0;
+        top: 6px;
+        content: "";
+        width: 1px;
+        height: 70px;
+        background-color: #665e57;
+      }
+
+      li {
+        position: relative;
+        float: left;
+        width: 70px;
+        height: 82px;
+        padding: 0 3px;
+
+        a {
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          font-size: 12px;
+          width: 70px;
+          height: 64px;
+          color: #fff;
+          opacity: .7;
+          padding: 18px 0px 0px;
+          transition: all .2s;
+
+          img {
+            width: 24px;
+            height: 24px;
+            margin: 0 23px 4px;
+          }
+
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+
+
+    }
+
+    // 右侧图片
+    .ad-img {
+      float: left;
+      width: 316px;
+      height: 170px;
+      margin-left: 14.66px;
+      background-color: red;
+      transition: all .2s linear;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+
+      // 鼠标悬停出现阴影
+      &:hover {
+        box-shadow: 0 15px 30px rgba(0, 0, 0, .18);
+      }
+    }
+  }
+}
+
+// 5.主体开始
+.container {
+  // 对于浮动元素自动找寻高度。
+  overflow: hidden;
+  width: 100%;
+  background-color: #f5f5f5;
+  padding: 4px 0px 12px;
+
+  // 主体banner的广告盒子
+  .home-banner-box {
+    height: 100%;
+    height: 120px;
+    margin: 22px 0px 0px;
+  }
+
+  // 主体banner的标题
+  .home-banner-title {
+    position: relative;
+    width: 100%;
+    height: 58px;
+    color: #333;
+    line-height: 58px;
+    font-size: 22px;
+    font-weight: 200;
+    text-align: left;
+    margin-top: 22px;
+
+    .more {
+      font-size: 16px;
+      float: right;
+      color: #424242;
+
+      // 绘制右侧的圆
+      &>i {
+        display: inline-block;
+        width: 20px;
+        height: 22px;
+        line-height: 22px;
+        font-size: 12px;
+        background-color: #b0b0b0;
+        color: #fff;
+        border-radius: 50%;
+        text-align: center;
+        transition: all .4s;
+      }
+
+      // 设置鼠标经过动画
+      &:hover {
+        color: #ff6700;
+
+        &>i {
+          background-color: #ff6700;
+        }
+      }
+    }
+
+    // 为穿戴配置右边标题
+    .tab-list {
+      float: right;
+      height: 42px;
+      line-height: 42px;
+      padding: 16px 0px 0px;
+      box-sizing: border-box;
+
+      li {
+        float: left;
+        height: 24px;
+        line-height: 24px;
+        font-size: 16px;
+        margin: 0px 0px 0px 30px;
+
+        // 设置hover属性
+        &:hover {
+          color: #ff6700;
+          border-bottom: 2px solid #ff6700;
+        }
+
+        // 设置热门的大盒子
+        .watch1 {
+          display: none;
+          // 相对于 home-banner-title盒子
+          position: absolute;
+          top: 58px;
+          right: 0px;
+          width: 992px;
+          height: 614px;
+          transition: all 0.18s;
+
+          // 右边list
+          .box-list {
+            width: 992px;
+            height: 614px;
+
+            // 设置banner中所有的商品图 goods-img
+            // 以下部分可以重复使用。
+            .goods-img {
+              float: left;
+              width: 234px;
+              height: 260px;
+              padding: 20px 0px;
+              background-color: #fff;
+              margin-left: 14px;
+              margin-bottom: 14px;
+              transition: all .18s;
+              text-align: center;
+
+              img {
+                width: 160px;
+                height: 160px;
+                margin-bottom: 20px;
+              }
+
+              h3 {
+                height: 21px;
+                line-height: 21px;
+                font-size: 14px;
+                font-weight: 400;
+                text-align: center;
+                margin: 0px 10px 2px;
+                // 控制文字溢出
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+              }
+
+              .name {
+                margin: 0 10px 10px;
+                height: 18px;
+                line-height: 18px;
+                font-size: 12px;
+                color: #b0b0b0;
+                text-align: center;
+                // 控制文字溢出
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+              }
+
+              .price {
+                height: 21px;
+                line-height: 21px;
+                margin: 0 10px 14px;
+                text-align: center;
+                color: #ff6700;
+                font-size: 14px;
+                // 控制文字溢出
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+
+                // 设置丢弃的价格样式
+                .drop {
+                  color: #b0b0b0;
+                  text-decoration: line-through;
+                }
+              }
+
+
+              // 设置鼠标触及动画
+              &:hover {
+                // 控制3d变换
+                transform: translate3d(0px, -2px, 0);
+                // 控制盒子阴影
+                box-shadow: 0 15px 30px rgba(0, 0, 0, .1);
+              }
+            }
+
+          }
+        }
+
+        //设置watch1的显示与英藏
+        &:hover {
+          .watch1 {
+            display: block;
+          }
+        }
+
+        // 设置穿戴的大盒子
+      }
+    }
+
+  }
+
+  // phone的盒子模型
+  .phone-box {
+    width: 100%;
+    height: 614px;
+
+    // 左边盒子aside
+    .phone-box-aside {
+      width: 234px;
+      height: 614px;
+      float: left;
+      transition: all 0.18s;
+
+      // 设置鼠标触及动画
+      &:hover {
+        // 控制3d变换
+        transform: translate3d(0, -2px, 0);
+        // 控制盒子阴影
+        box-shadow: 0 15px 30px rgba(0, 0, 0, .1);
+      }
+    }
+
+    // 右边list
+    .box-list {
+      // 进行左浮动，并排显示
+      float: left;
+      width: 992px;
+      height: 614px;
+
+      // 设置banner中所有的商品图 goods-img
+      // 以下部分可以重复使用。
+      .goods-img {
+        float: left;
+        width: 234px;
+        height: 260px;
+        padding: 20px 0px;
+        background-color: #fff;
+        margin-left: 14px;
+        margin-bottom: 14px;
+        transition: all .18s;
+
+        img {
+          width: 160px;
+          height: 160px;
+          margin-bottom: 20px;
+        }
+
+        h3 {
+          height: 21px;
+          line-height: 21px;
+          font-size: 14px;
+          font-weight: 400;
+          margin: 0px 10px 2px;
+          // 控制文字溢出
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .name {
+          margin: 0 10px 10px;
+          height: 18px;
+          font-size: 12px;
+          color: #b0b0b0;
+          // 控制文字溢出
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .price {
+          height: 21px;
+          line-height: 21px;
+          margin: 0 10px 14px;
+          text-align: center;
+          color: #ff6700;
+          font-size: 14px;
+          // 控制文字溢出
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+
+          // 设置丢弃的价格样式
+          .drop {
+            color: #b0b0b0;
+            text-decoration: line-through;
+          }
+        }
+
+
+        // 设置鼠标触及动画
+        &:hover {
+          // 控制3d变换
+          transform: translate3d(0px, -2px, 0);
+          // 控制盒子阴影
+          box-shadow: 0 15px 30px rgba(0, 0, 0, .1);
+        }
+      }
+
+      // 设置ele中最后一个盒子布局
+      .last-list {
+        position: relative;
+        float: left;
+        width: 234px;
+        height: 143px;
+        background-color: #fff;
+        margin: 0 0 14px 14px;
+        transition: all .18s;
+
+        // 书写内嵌样式
+        img {
+          position: absolute;
+          right: 20px;
+          top: 31px;
+          width: 80px;
+          height: 80px;
+        }
+
+        // 设置第一个盒子box1： 小good展示部分。
+        .box1 {
+          width: 234px;
+          height: 68px;
+          text-align: left;
+          margin: 40px 0 0 30px;
+
+          h3 {
+            width: 92px;
+            height: 42px;
+            font-size: 14px;
+            font-weight: normal;
+          }
+
+          p {
+            margin-top: 5px;
+            font-size: 12px;
+            color: #ff6700;
+          }
+
+        }
+
+        // 设置第二个盒子box2: more更多
+        .box2 {
+          position: absolute;
+          left: 0px;
+          top: 49px;
+          width: 234px;
+          height: 45px;
+          padding-left: 30px;
+          box-sizing: border-box;
+
+          .big {
+            width: 94px;
+            height: 27px;
+            line-height: 27px;
+            font-size: 18px;
+            color: #333;
+            text-align: left;
+          }
+
+          .small {
+            width: 94px;
+            height: 18px;
+            line-height: 18px;
+            font-size: 12px;
+            color: #757575;
+            text-align: left;
+          }
+
+          i {
+            position: absolute;
+            top: -9px;
+            right: 30px;
+            font-size: 60px;
+            color: #ff6700;
+          }
+        }
+
+        &:hover {
+          transform: translate3d(0px, -2px, 0px);
+          box-shadow: 0px 15px 30px rgba(0, 0, 0, .18);
+        }
+      }
+
+    }
+
+  }
+
+  // ele的盒子模型
+  .ele-box {
+    width: 100%;
+    // 不能对ele-box使用overflow，因为子盒子由阴影和动画
+    // overflow: hidden;
+    // 但可以对container使用overflow，其作用是自动寻找高度。
+
+    .ele-left {
+      float: left;
+      width: 234px;
+      height: 614px;
+
+      a {
+        float: left;
+        width: 234px;
+        height: 300px;
+        transition: all 0.18s;
+        background-color: pink;
+
+        // 设置鼠标触及动画
+        &:hover {
+          // 控制3d变换
+          transform: translate3d(0, -2px, 0);
+          // 控制盒子阴影
+          box-shadow: 0 15px 30px rgba(0, 0, 0, .1);
+        }
+      }
+
+      .last {
+        margin-top: 14px;
+      }
+
+      // 清除左边的浮动
+      .clear {
+        clear: both;
+      }
+    }
+
+    .ele-right {
+      float: left;
+      width: 992px;
+      height: 614px;
+
+      .box-list {
+        // 进行左浮动，并排显示
+        float: left;
+        width: 992px;
+        height: 614px;
+
+        // 设置banner中所有的商品图 goods-img
+        // 以下部分可以重复使用。
+        .goods-img {
+          float: left;
+          width: 234px;
+          height: 260px;
+          padding: 20px 0px;
+          background-color: #fff;
+          margin-left: 14px;
+          margin-bottom: 14px;
+          transition: all .18s;
+
+          img {
+            width: 160px;
+            height: 160px;
+            margin-bottom: 20px;
+          }
+
+          h3 {
+            height: 21px;
+            line-height: 21px;
+            font-size: 14px;
+            font-weight: 400;
+            margin: 0px 10px 2px;
+            // 控制文字溢出
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+
+          .name {
+            margin: 0 10px 10px;
+            height: 18px;
+            font-size: 12px;
+            color: #b0b0b0;
+            // 控制文字溢出
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+
+          .price {
+            height: 21px;
+            line-height: 21px;
+            margin: 0 10px 14px;
+            text-align: center;
+            color: #ff6700;
+            font-size: 14px;
+            // 控制文字溢出
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            // 设置丢弃的价格样式
+            .drop {
+              color: #b0b0b0;
+              text-decoration: line-through;
+            }
+          }
+
+          // 设置鼠标触及动画
+          &:hover {
+            // 控制3d变换
+            transform: translate3d(0px, -2px, 0);
+            // 控制盒子阴影
+            box-shadow: 0 15px 30px rgba(0, 0, 0, .1);
+          }
+        }
+
+        // 设置ele中最后一个盒子布局
+        .last-list {
+          position: relative;
+          float: left;
+          width: 234px;
+          height: 143px;
+          background-color: #fff;
+          margin: 0 0 14px 14px;
+          transition: all .18s;
+
+          // 书写内嵌样式
+          img {
+            position: absolute;
+            right: 20px;
+            top: 31px;
+            width: 80px;
+            height: 80px;
+          }
+
+          // 设置第一个盒子box1： 小good展示部分。
+          .box1 {
+            width: 234px;
+            height: 68px;
+            text-align: left;
+            margin: 40px 0 0 30px;
+
+            h3 {
+              width: 92px;
+              height: 42px;
+              font-size: 14px;
+              font-weight: normal;
+            }
+
+            p {
+              margin-top: 5px;
+              font-size: 12px;
+              color: #ff6700;
+            }
+
+          }
+
+          // 设置第二个盒子box2: more更多
+          .box2 {
+            position: absolute;
+            left: 0px;
+            top: 49px;
+            width: 234px;
+            height: 45px;
+            padding-left: 30px;
+            box-sizing: border-box;
+
+            .big {
+              width: 94px;
+              height: 27px;
+              line-height: 27px;
+              font-size: 18px;
+              color: #333;
+              text-align: left;
+            }
+
+            .small {
+              width: 94px;
+              height: 18px;
+              line-height: 18px;
+              font-size: 12px;
+              color: #757575;
+              text-align: left;
+            }
+
+            i {
+              position: absolute;
+              top: -9px;
+              right: 30px;
+              font-size: 60px;
+              color: #ff6700;
+            }
+          }
+
+          &:hover {
+            transform: translate3d(0px, -2px, 0px);
+            box-shadow: 0px 15px 30px rgba(0, 0, 0, .18);
+          }
+        }
+      }
+    }
+
+    // 右边清除浮动
+    .clear1 {
+      clear: both;
+    }
+  }
+
+  // 视频开始部分
+  .vedio-box {
+    width: 1226px;
+    // height: 299px;
+
+    .first {
+      margin-left: 0px;
+    }
+
+    li {
+      float: left;
+      width: 296px;
+      height: 285px;
+      background-color: #fff;
+      margin: 0px 0px 14px 14px;
+      // 添加过渡动画
+      transition: all 0.18s;
+
+      &:hover {
+        transform: translate3d(0, -2px, 0);
+        box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.18);
+
+        // 播放按钮变化
+        span {
+          background-color: #ff6700;
+          border: 2px solid #ff6700;
+          color: #ff6700;
+        }
+      }
+
+      // 设置内部样式结构
+      a {
+        position: relative;
+        display: block;
+        width: 296px;
+        height: 253px;
+
+        img {
+          width: 296px;
+          height: 180px;
+          margin-bottom: 28px;
+        }
+
+        .vedio-big {
+          height: 21px;
+          line-height: 21px;
+          font-size: 14px;
+          font-weight: 400;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        .vedio-small {
+          height: 18px;
+          line-height: 18px;
+          font-size: 12px;
+          color: #b0b0b0;
+          font-weight: 400;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        // 绘制span为播放按钮
+        span {
+          position: absolute;
+          left: 20px;
+          top: 150px;
+          width: 32px;
+          height: 20px;
+          border-radius: 12px;
+          background-color: rgba(0, 0, 0, .6);
+          border: 2px solid #fff;
+          color: #fff;
+          transition: all .2s;
+          overflow: hidden;
+          line-height: 20px;
+          text-align: center;
+
+          .sanjiao {
+            width: 0;
+            height: 0;
+            border: 6px solid transparent;
+            border-right: none;
+            border-left: 8px solid #fff;
+            margin: 4px auto 0px;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+// 6.footer部分
+.footer {
+  width: 100%;
+  height: 472.5px;
+
+  .footer-service {
+    height: 80px;
+    padding: 27px 0px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #e0e0e0;
+
+    li {
+      float: left;
+      width: 19.8%;
+      height: 25px;
+      border-left: 1px solid #e0e0e0;
+      font-size: 16px;
+      line-height: 25px;
+      text-align: center;
+
+      a {
+        color: #616161;
+        transition: color .2s;
+        line-height: 17px;
+
+        em {
+          font-size: 25px;
+          margin-right: 5px;
+        }
+
+        &:hover {
+          color: #ff6700;
+        }
+      }
+    }
+
+    // 选择第一个li去除左边框
+    &>li:first-child {
+      border-left: none;
+    }
+  }
+
+  .footer-link {
+    position: relative;
+    width: 1226px;
+    height: 312.5px;
+    padding: 40px 0px;
+
+    dl {
+      float: left;
+      height: 312.5px;
+      width: 160px;
+
+      dt {
+        width: 160px;
+        height: 17.5px;
+        line-height: 17.5px;
+        text-align: left;
+        margin-bottom: 26px;
+        font-size: 14px;
+      }
+
+      dd {
+        width: 160px;
+        height: 18px;
+        line-height: 18px;
+        margin: 10px 0px 0px;
+        text-align: left;
+
+        a {
+          font-size: 12px;
+          color: #757575;
+
+          &:hover {
+            color: #ff6700;
+          }
+        }
+      }
+    }
+
+    // 设置右边的部分。
+    .footer-container {
+      position: absolute;
+      right: 0px;
+      top: 40px;
+      width: 252px;
+      height: 80px;
+      border-left: 1px solid #e0e0e0;
+
+      .tel {
+        width: 251px;
+        height: 22px;
+        margin-bottom: 5px;
+        text-align: center;
+        font-size: 22px;
+        line-height: 22px;
+        color: #ff6700;
+      }
+
+      .time {
+        margin: 0px 0px 5px 0;
+        font-size: 12px;
+        text-align: center;
+        color: #616161;
+      }
+
+      a {
+        display: block;
+        width: 120px;
+        height: 30px;
+        line-height: 28px;
+        text-align: center;
+        background-color: #fff;
+        color: #ff6700;
+        border: 1px solid #ff6700;
+        box-sizing: border-box;
+        transition: all .4s;
+        font-size: 12px;
+        // 固定位置
+        margin-left: 67px;
+
+        i {
+          margin-right: 10px;
+        }
+
+        &:hover {
+          background-color: #ff6700;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
+// 7.info信息
+.info {
+  width: 100%;
+  height: 266px;
+  padding: 30px 0px;
+  box-sizing: border-box;
+  background-color: #fafafa;
+
+  .info-container {
+    position: relative;
+    width: 1226px;
+    height: 157px;
+    padding-left: 77px;
+
+    .logo {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      width: 56px;
+      height: 56px;
+      margin-right: 20px;
+
+      img {
+        width: 56px;
+        height: 56px;
+      }
+    }
+
+    .text {
+      width: 1226px;
+      height: 110px;
+      color: #b0b0b0;
+
+      p {
+        height: 19px;
+        line-height: 19px;
+        text-align: left;
+
+        a {
+          display: inline-block;
+          height: 14px;
+          line-height: 14px;
+          font-size: 12px;
+          color: #757575;
+          padding-right: 5px;
+          border-right: 2px solid #b0b0b0;
+
+          &:hover {
+            color: #ff6700;
+          }
+        }
+
+        span {
+          margin: 0px -3px 0px 3px;
+          color: #757575;
+
+          &:hover {
+            color: #ff6700;
+          }
+        }
+
+
+      }
+
+      .text-link {
+        width: 1149px;
+        height: 72px;
+
+        a {
+          display: inline-block;
+          font-size: 12px;
+          line-height: 14px;
+          color: #b0b0b0;
+          padding-right: 0px;
+          border-right: none;
+
+          &:hover {
+            color: #ff6700;
+          }
+        }
+      }
+    }
+
+
+    .link {
+      width: 1149px;
+      height: 28px;
+      margin: 10px 0px 10px 0px;
+
+      img {
+        float: left;
+        width: 85px;
+        height: 28px;
+        display: inline-block;
+      }
+    }
+  }
+
+  .info-slogan {
+    width: 1226px;
+    height: 19px;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #b0b0b0;
+  }
+}
+
+.wrap {
+  width: 1226px;
+  margin: 0 auto;
+}
